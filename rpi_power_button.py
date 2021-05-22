@@ -11,17 +11,19 @@ poll_period_sec = 0.1
 delay_before_shutdown_sec = 0.5
 shutdownCommand = "shutdown -h now".split()
 
-# raspberry pi
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(gpio_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-# logging
-handler = logging.handlers.WatchedFileHandler("/var/log/rpi_power_button/rpi_power_button.log")
-formatter = logging.Formatter(logging.BASIC_FORMAT)
-handler.setFormatter(formatter)
-root = logging.getLogger()
-root.setLevel(os.environ.get("LOGLEVEL", "INFO"))
-root.addHandler(handler)
+def initGPIO():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(gpio_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+
+def initLogging():
+    handler = logging.handlers.WatchedFileHandler("/var/log/rpi_power_button/rpi_power_button.log")
+    formatter = logging.Formatter(logging.BASIC_FORMAT)
+    handler.setFormatter(formatter)
+    root = logging.getLogger()
+    root.setLevel(os.environ.get("LOGLEVEL", "INFO"))
+    root.addHandler(handler)
 
 
 def shutdown():
@@ -32,6 +34,9 @@ def shutdown():
 
 
 def init():
+    initGPIO()
+    initLogging()
+
     while True:
         time.sleep(poll_period_sec)
         if GPIO.input(gpio_pin) == False:

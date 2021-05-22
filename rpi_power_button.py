@@ -29,6 +29,7 @@ def initLogging():
 def shutdown():
     try:
         subprocess.check_output(shutdownCommand)
+        logging.info("shutting down...")
     except Exception as e:
         logging.exception(str(e))
 

@@ -16,7 +16,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(gpio_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # logging
-handler = logging.handlers.WatchedFileHandler("/var/log/pi_power_button/pi_power_button.log")
+handler = logging.handlers.WatchedFileHandler("/var/log/rpi_power_button/rpi_power_button.log")
 formatter = logging.Formatter(logging.BASIC_FORMAT)
 handler.setFormatter(formatter)
 root = logging.getLogger()

@@ -29,7 +29,7 @@ def initLogging():
 
 def createLogMessage(message):
     now = datetime.now().strftime("%H:%M:%S")
-    return f'{now} {message}'
+    return "{now} {message}".format(now=now,message=message)
 
 
 def logInfo(message):

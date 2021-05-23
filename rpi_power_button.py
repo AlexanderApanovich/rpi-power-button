@@ -19,17 +19,19 @@ def initGPIO():
 
 
 def initLogging():
-    handler = logging.handlers.WatchedFileHandler("/var/log/rpi_power_button/rpi_power_button.log")
+    handler = logging.handlers.WatchedFileHandler(
+        "/var/log/rpi_power_button/rpi_power_button.log")
     formatter = logging.Formatter(logging.BASIC_FORMAT)
     handler.setFormatter(formatter)
     root = logging.getLogger()
     root.setLevel(os.environ.get("LOGLEVEL", "INFO"))
     root.addHandler(handler)
 
+
 def createLogMessage(message):
     now = datetime.now().strftime("%H:%M:%S")
     return f'{now} {message}'
-    
+
 
 def logInfo(message):
     logging.info(createLogMessage(message))

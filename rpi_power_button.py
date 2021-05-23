@@ -3,6 +3,7 @@ import logging.handlers
 import os
 import subprocess
 import time
+from datetime import datetime
 import RPi.GPIO as GPIO
 
 # config
@@ -25,13 +26,25 @@ def initLogging():
     root.setLevel(os.environ.get("LOGLEVEL", "INFO"))
     root.addHandler(handler)
 
+def createLogMessage(message):
+    now = datetime.now().strftime("%H:%M:%S")
+    return f'{now} {message}'
+    
+
+def logInfo(message):
+    logging.info(createLogMessage(message))
+
+
+def logError(message):
+    logging.exception(createLogMessage(message))
+
 
 def shutdown():
     try:
-        logging.info("shutting down...")
+        logInfo("shutting down...")
         subprocess.check_output(shutdownCommand)
     except Exception as e:
-        logging.exception(str(e))
+        logError(str(e))
 
 
 def init():

@@ -10,7 +10,7 @@ import RPi.GPIO as GPIO
 gpio_pin = 3
 poll_period_sec = 0.1
 delay_before_shutdown_sec = 0.5
-shutdownCommand = "shutdown -h now".split()
+shutdownCommand = "/sbin/shutdown -h now".split()
 
 
 def initGPIO():

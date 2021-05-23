@@ -43,7 +43,7 @@ def logError(message):
 def shutdown():
     try:
         logInfo("shutting down...")
-        subprocess.check_output(shutdownCommand)
+        subprocess.call(shutdownCommand, shell=False)
     except Exception as e:
         logError(str(e))
 

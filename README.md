@@ -1,4 +1,4 @@
-# rpi-power-button
+# Raspberry Pi 4 Power ON/Power OFF button
 
 Python script to power on/off Raspberry PI 4  
 

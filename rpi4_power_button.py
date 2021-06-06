@@ -19,7 +19,7 @@ def initGPIO():
 
 
 def initLogging():
-    handler = logging.handlers.WatchedFileHandler("/var/log/rpi_power_button/rpi_power_button.log")
+    handler = logging.handlers.WatchedFileHandler("/var/log/rpi4_power_button/rpi4_power_button.log")
     formatter = logging.Formatter(logging.BASIC_FORMAT)
     handler.setFormatter(formatter)
     root = logging.getLogger()
